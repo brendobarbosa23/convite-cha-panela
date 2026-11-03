@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chá de Panela</title>
+<style>
+body{margin:0;padding:20px;display:flex;justify-content:center;font-family:Georgia,serif;background:#fdf2f4;color:#4a2c36}
+.card{max-width:440px;width:100%;background:#fff;border-radius:18px;padding:28px;text-align:center;box-shadow:0 4px 20px #0001}
+h1{margin:0 0 6px}
+p{line-height:1.55}
+.gift{background:#fde8ec;border-radius:12px;padding:14px;margin:18px 0}
+.info{text-align:left;background:#faf5f6;border-radius:12px;padding:14px;margin:14px 0}
+.btn{display:block;margin:10px 0;padding:14px;border-radius:12px;text-decoration:none;font-weight:bold;color:#fff}
+.map{background:#c2557a}
+.zap{background:#25a244}
+small{color:#8a6b75}
+</style></head>
+<body><div class="card" id="c"></div>
+<script>
+const EVENTO={
+  anfitrioes:"Rosângela e Brendo",
+  data:"21/11/2026",
+  hora:"19h às 22h",
+  local:"Lili & Vivi Delícias Regionais",
+  endereco:"Av. Tarumã, nº 1470 - Praça 14 de Janeiro, Manaus - AM",
+  whatsapp:"5592991490706"
+};
+const CONVIDADOS={
+  "joana":{nome:"Joana",presente:"Sanduicheira Grill"},
+  "jakeliny":{nome:"Jakeliny",presente:"Jogo de Panelas"},
+  "gleicyane":{nome:"Gleicyane",presente:"Panela pipoqueira"},
+  "thais":{nome:"Thais",presente:"Air Fryer"},
+  "debora":{nome:"Débora",presente:"Cobreleito casal"},
+  "tia-simone":{nome:"Tia Simone",presente:"Jogo de Taças"},
+  "sidia":{nome:"Sídia",presente:"Cafeteira Expresso"},
+  "pamela":{nome:"Pamela",presente:"Cobreleito casal"},
+  "lana":{nome:"Lana",presente:"Moedor de grãos"},
+  "simone":{nome:"Simone",presente:"Cobreleito casal"},
+  "karolina":{nome:"Karolina",presente:"Jogo de frigideiras"},
+  "tania":{nome:"Tania",presente:"Jogo de Pratos"},
+  "suzuko":{nome:"Suzuko",presente:"Mixer elétrico"},
+  "inah":{nome:"Inah",presente:"Pipoqueira Elétrica"},
+  "ingrid":{nome:"Ingrid",presente:"Faqueiro inox"},
+  "florenca":{nome:"Florença",presente:"Liquidificador"},
+  "polyanna":{nome:"Polyanna",presente:"Chaleira Elétrica"},
+  "irandelia":{nome:"Irandélia",presente:"Jogo de Panelas"},
+  "larissa":{nome:"Larissa",presente:"Jogo de Assadeiras retangulares"},
+  "amanda":{nome:"Amanda",presente:"Jogo de toalhas de banho"},
+  "lindalva":{nome:"Lindalva",presente:"Edredom casal"},
+  "remys":{nome:"Remys",presente:"Jogo de jarra com copos de vidro"},
+  "claudia":{nome:"Cláudia",presente:"Garrafa Térmica"},
+  "karoliny":{nome:"Karoliny",presente:"Panela de Pressão"}
+};
+const g=CONVIDADOS[new URLSearchParams(location.search).get("c")];
+const mapa="https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(EVENTO.local+", "+EVENTO.endereco);
+const msg=encodeURIComponent((g?"Olá! Aqui é "+g.nome+". ":"Olá! ")+"Confirmo minha presença no chá de panela dia "+EVENTO.data+". 🎉");
+const zap="https://wa.me/"+EVENTO.whatsapp+"?text="+msg;
+document.getElementById("c").innerHTML=`
+<h1>🍳 Chá de Panela</h1>
+<p>${g?`Olá, <b>${g.nome}</b>!`:"Olá!"}<br>${EVENTO.anfitrioes} convidam você para celebrar com a gente.</p>
+<div class="info">📅 <b>${EVENTO.data}</b><br>🕒 ${EVENTO.hora}<br>📍 ${EVENTO.local}<br><small>${EVENTO.endereco}</small></div>
+${g?`<div class="gift">🎁 Presente sugerido para você:<br><b>${g.presente}</b></div>`:""}
+<div class="info">🍽️ Buffet livre: pode comer à vontade!<br>👗 Recomendação da noiva: roupas clean, evitando a cor branca.</div>
+<a class="btn map" href="${mapa}" target="_blank">📍 Ver endereço no mapa</a>
+<a class="btn zap" href="${zap}" target="_blank">✅ Confirmar presença</a>`;
+</script></body></html>
